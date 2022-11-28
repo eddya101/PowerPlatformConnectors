@@ -1,0 +1,182 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Tulip Machines",
+    "description": "Connect to your Tulip Machine Data and update machine attribute values.",
+    "version": "1.0"
+  },
+  "host": "api.tulip.co",
+  "basePath": "/api/v3",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/machines/archive/{machineID}": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "id"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "type"
+                },
+                "customerId": {
+                  "type": "string",
+                  "description": "customerId"
+                },
+                "userId": {
+                  "type": "string",
+                  "description": "userId"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "status"
+                },
+                "workspaceId": {
+                  "type": "string",
+                  "description": "workspaceId"
+                }
+              }
+            }
+          }
+        },
+        "description": "Generate machine activity archive. Returned object contains id necessary for later retrieval.",
+        "summary": "Machine Activity Archive",
+        "operationId": "GenerateArchiveJob",
+        "parameters": [
+          {
+            "name": "machineID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "factoryURL",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/machines/archive/csv/{jobID}": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "id"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "type"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "status"
+                },
+                "resource": {
+                  "type": "string",
+                  "description": "resource"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "GetArchiveCSVLink",
+        "description": "Retrieve machine activity archive status. Returned object contains status and related information. When the archive has been completed, the returned object will contain the download URL of the asset.",
+        "summary": "Retrieve Archive status and link.",
+        "parameters": [
+          {
+            "name": "jobID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of job for specific machine"
+          },
+          {
+            "name": "factoryURL",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/machines": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Machines",
+        "description": "Retrieves a list of all Tulip machine types, along with all machines corresponding to each machine type.",
+        "operationId": "ListMachines",
+        "parameters": [
+          {
+            "name": "factoryURL",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/attributes/report": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Report new values for machine atributes.",
+        "description": "Report new values for API machine attributes. All attribute IDs must be associated with their respective machines. A value must be congruent with the attribute's associated type. No attributes are processed if any of them fail validation.",
+        "operationId": "ReportMachineAttribute",
+        "parameters": [
+          {
+            "name": "factoryURL",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Attributes to report",
+              "default": "{   \"attributes\": [     {       \"machineId\": \"string\",       \"attributeId\": \"string\",       \"value\": \"same data type as the respective attribute\"     }   ] }"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "undefined": {
+      "type": "basic"
+    }
+  },
+  "security": [],
+  "tags": []
+}

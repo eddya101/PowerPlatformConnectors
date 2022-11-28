@@ -1,0 +1,75 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Tulip Users",
+    "description": "Create an operator-level user in your Tulip account",
+    "version": "1.0"
+  },
+  "host": "api.tulip.co",
+  "basePath": "/api/v3",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/users": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Create A User",
+        "operationId": "CreateOperator",
+        "description": "Creates a new user. This endpoint can only be used to create Tulip Operators.",
+        "parameters": [
+          {
+            "name": "factoryURL",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "type": "string",
+                  "description": "role",
+                  "title": "",
+                  "enum": [
+                    "operator"
+                  ],
+                  "default": "operator"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "name"
+                },
+                "badge_id": {
+                  "type": "string",
+                  "description": "badge_id"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "undefined": {
+      "type": "basic"
+    }
+  },
+  "security": [],
+  "tags": []
+}

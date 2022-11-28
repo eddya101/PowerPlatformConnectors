@@ -1,0 +1,48 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Tulip Apps",
+    "description": "Retrieves a list of all Tulip App Groups and their containing apps.",
+    "version": "1.0"
+  },
+  "host": "api.tulip.co",
+  "basePath": "/api/v3",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/appGroups": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Get a list of your apps",
+        "description": "Retrieves a list of all Tulip App Groups and their containing apps.",
+        "operationId": "GetApps",
+        "parameters": [
+          {
+            "name": "factoryURL",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "undefined": {
+      "type": "basic"
+    }
+  },
+  "security": [],
+  "tags": []
+}
